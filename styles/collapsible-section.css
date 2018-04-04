@@ -1,0 +1,88 @@
+/* colors */
+/* functions */
+/* mixins */
+/* fonts */
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400");
+/* normalize */
+* {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+  *:focus {
+    outline: none; }
+
+html {
+  background-color: #004c63;
+  color: #fff9fb;
+  font: 400 10px/1.42857 "Source Sans Pro", Helvetica, Arial, sans-serif; }
+
+body {
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 1.6rem;
+  padding: 1rem 2rem; }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+
+h1, h2, h3, h4, h5, h6 {
+  font: 300 10px/1 "Source Sans Pro", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.75px;
+  text-transform: uppercase; }
+
+h1 {
+  font-size: 3rem; }
+
+h2 {
+  font-size: 2rem; }
+
+ol, ul {
+  margin: 1rem 2rem; }
+
+/* collapsible section elements */
+.collapsible-section {
+  display: block;
+  margin: 1rem 0; }
+  .collapsible-section .collapsible-body {
+    background-color: #fff9fb;
+    color: #252627;
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 500ms; }
+    .collapsible-section .collapsible-body > .content {
+      padding: 1rem 2rem; }
+  .collapsible-section .collapsible-header {
+    background-color: #0098c5;
+    color: #fff9fb;
+    cursor: pointer;
+    display: block;
+    padding: 1rem 2rem; }
+    .collapsible-section .collapsible-header:hover {
+      background-color: #007192;
+      color: #fff9fb; }
+    .collapsible-section .collapsible-header .title {
+      padding: 0 2rem 0 0;
+      position: relative; }
+      .collapsible-section .collapsible-header .title::after {
+        content: '\203A';
+        display: block;
+        position: absolute;
+        right: 0;
+        transform-origin: 50% 50%;
+        transition: transform 500ms;
+        text-align: center;
+        top: 0;
+        width: 2rem; }
+  .collapsible-section.expanded .collapsible-body {
+    max-height: 600px; }
+  .collapsible-section.expanded .collapsible-header .title::after {
+    transform: rotate(-90deg); }
+
+/*# sourceMappingURL=collapsible-section.css.map */

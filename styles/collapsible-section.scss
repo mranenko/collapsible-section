@@ -1,0 +1,95 @@
+/* colors */
+$black: #252627;
+$blue: #0098c5;
+$navy: #004c63;
+$white: #fff9fb;
+
+/* functions */
+@function contrast-color($color, $dark: $black, $light: $white) {
+	@if (lightness($color) > 76) { @return $dark; }
+	@else { @return $light; }
+}
+
+/* mixins */
+@mixin contrasted($background-color, $dark: $black, $light: $white) {
+	background-color: $background-color;
+	color: contrast-color($background-color, $dark, $light);
+}
+@mixin text-size-adjust {
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+/* fonts */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+$source-sans-pro: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+$open-sans: 'Open Sans', Helvetica, Arial, sans-serif;
+
+/* normalize */
+* {
+	@include text-size-adjust;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	&:focus { outline: none; }
+}
+
+html { @include contrasted($navy); font: 400 10px/1.42857 $source-sans-pro; }
+body { background: none; color: inherit; font: inherit; font-size: 1.6rem; padding: 1rem 2rem; }
+
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, h5, h6 { font: 300 10px/1 $source-sans-pro; letter-spacing: 0.75px; text-transform: uppercase; }
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; }
+ol, ul { margin: 1rem 2rem; }
+
+/* collapsible section elements */
+.collapsible-section {
+	display: block;
+	margin: 1rem 0;
+
+	.collapsible-body {
+		@include contrasted($white);
+		display: block;
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 500ms;
+		> .content { padding: 1rem 2rem; }
+	}
+	.collapsible-header {
+		@include contrasted($blue);
+		cursor: pointer;
+		display: block;
+		padding: 1rem 2rem;
+
+		&:hover { @include contrasted(darken($blue, 10%)); }
+
+		.title {
+			padding: 0 2rem 0 0;
+			position: relative;
+
+			&::after {
+				content: '\203A';
+				display: block;
+				position: absolute;
+				right: 0;
+				transform-origin: 50% 50%;
+				transition: transform 500ms;
+				text-align: center;
+				top: 0;
+				width: 2rem;
+			}
+		}
+	}
+
+	&.expanded {
+		.collapsible-body { max-height: 600px; }
+		.collapsible-header {
+			.title {
+				&::after { transform: rotate(-90deg); }
+			}
+		}
+	}
+}
